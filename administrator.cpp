@@ -59,7 +59,12 @@ void Administrator::KeyboardInput(){
 }
 
 //output functions
-void Administrator::print() const;
-void Administrator::printCheck() const;
+void Administrator::print() const{
+
+}
+
+void Administrator::printCheck() const{
+
+}
 
 
