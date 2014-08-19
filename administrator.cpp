@@ -42,7 +42,6 @@ void Administrator::SetNameOfSupervisor(string theSupervisorName){
 void Administrator::KeyboardInput(){
    string NamePrompt = "What is the admins Name: ";
    string ssnPrompt = "What is the admins SSN: ";
-   string NetPayPrompt = "What is the admins Net Pay: ";
    string SalaryPrompt = "What is the admins Yearly Salary: ";
    string TitlePrompt = "What is the admins Title: ";
    string AreaPrompt = "What is the admins Area of Responsibility: ";
@@ -50,7 +49,6 @@ void Administrator::KeyboardInput(){
 
    this->setName(swansonInput::GetString(NamePrompt));
    this->setSsn(swansonInput::GetString(ssnPrompt));
-   this->setNetPay(swansonInput::GetDouble(NetPayPrompt));
    this->setSalary(swansonInput::GetDouble(SalaryPrompt));
    this->SetTitle(swansonInput::GetString(TitlePrompt));
    this->SetAreaOfResponsibility(swansonInput::GetString(AreaPrompt));
@@ -60,11 +58,32 @@ void Administrator::KeyboardInput(){
 
 //output functions
 void Administrator::print() const{
+   cout  << "\n__________________________________________________\n"
+         <<   "-----------------EMPLOYEE ID----------------------\n"
+         <<  "__________________________________________________\n"
+         <<  "\nName: " << this->getName()
+         <<  "\nSSN: " << this->getSsn()
+         <<  "\nTitle: " << this->Title
+         <<  "\nArea Of Responsibility: " << this->AreaOfResponsibility
+         <<  "\nSupervisor: " << this->NameOfSupervisor
+         << "\n__________________________________________________\n"
+         <<   "--------------------------------------------------\n"
+         <<  "__________________________________________________\n";
+   cout.flush();
 
 }
 
-void Administrator::printCheck() const{
-
+void Administrator::printCheck(){
+     setNetPay(this->salary/double(12));
+     cout << "\n__________________________________________________\n";
+     cout << "Pay to the order of " << getName( ) << endl;
+     cout << "The sum of " << getNetPay( ) << " Dollars\n";
+     cout << "_________________________________________________\n";
+     cout << "Check Stub NOT NEGOTIABLE \n";
+     cout << "Employee Number: " << getSsn( ) << endl;
+     cout << "Salaried Employee. Regular Yearly Pay: "
+          << salary << endl;
+     cout << "_________________________________________________\n";
 }
 
 

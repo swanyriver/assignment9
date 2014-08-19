@@ -40,7 +40,7 @@ public:
 
    //output functions
    void print() const;
-   void printCheck() const;
+   void printCheck();
 
 
 };
