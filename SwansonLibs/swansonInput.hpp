@@ -187,7 +187,7 @@ long int swansonInput::GetLong ( string prompt , long int rangeMin ,
       while ( !swansonString::AllNumbers( parse_string ) || parse_string.empty() ) {
          attempts++;
          if ( attempts > MAX_ATTEMPTS )
-            return 0;
+            return rangeMin;
 
          cout << "lets try to restrain ourselves to only whole numbers";
          parse_string = swansonInput::GetString( prompt );
@@ -234,7 +234,7 @@ double swansonInput::GetDouble ( string prompt , double rangeMin ,
             || parse_string.empty() ) {
          attempts++;
          if ( attempts > MAX_ATTEMPTS )
-            return 0;
+            return rangeMin;
 
          cout << "lets try to restrain ourselves to only "
                << "valid floating point numbers";
