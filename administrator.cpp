@@ -10,6 +10,7 @@
 #include "administrator.h"
 #include "SwansonLibs/swansonInput.hpp"
 
+
 using namespace SavitchEmployees;
 
 //Default Constructor
@@ -19,8 +20,8 @@ Administrator::Administrator () :
                "No Supervisor Yet" ) {
    }
 
-   //Constructor that supplies all necessary information to
-   //Parent class SalariedEmployee
+//Constructor that supplies all necessary information to
+//Parent class SalariedEmployee
 Administrator::Administrator ( const string& theName , const string& theSsn ,
          double theYearlySalary ) :
          SalariedEmployee( theName , theSsn , theYearlySalary ) {
@@ -39,7 +40,23 @@ void Administrator::SetNameOfSupervisor(string theSupervisorName){
    this->NameOfSupervisor = theSupervisorName;
 }
 
+bool properID(string id){
+
+   if(id.length()!=11) return false;
+
+   for(int i=0;i<id.length(); i++){
+      char c = id.at(i);
+
+      if(i==3 || i==6){
+         if(c!='-') return false;
+      }else if(c<'0' || c>'9') return false;
+   }
+   return true;
+}
+
 void Administrator::KeyboardInput(){
+
+   //input prompts
    string NamePrompt = "What is the admins Name: ";
    string ssnPrompt = "What is the admins SSN: ";
    string SalaryPrompt = "What is the admins Yearly Salary: ";
@@ -47,8 +64,17 @@ void Administrator::KeyboardInput(){
    string AreaPrompt = "What is the admins Area of Responsibility: ";
    string SupervisorPrompt = "What is the admins Supervisor's Name: ";
 
+   //inputs for each admin field
    this->setName(swansonInput::GetString(NamePrompt));
-   this->setSsn(swansonInput::GetString(ssnPrompt));
+
+   bool success=false;
+   do {
+      this->setSsn(swansonInput::GetString(ssnPrompt));
+      success = properID(getSsn());
+      if(!success) cout << endl << "That was not a valid employee id"
+            << endl << "Please use this format ###-##-####" << endl;
+   } while (!success);
+
    this->setSalary(swansonInput::GetDouble(SalaryPrompt));
    this->SetTitle(swansonInput::GetString(TitlePrompt));
    this->SetAreaOfResponsibility(swansonInput::GetString(AreaPrompt));
@@ -74,6 +100,7 @@ void Administrator::print() const{
 }
 
 void Administrator::printCheck(){
+     //calculate monthly salary from yearly
      setNetPay(this->salary/double(12));
      cout << "\n__________________________________________________\n";
      cout << "Pay to the order of " << getName( ) << endl;

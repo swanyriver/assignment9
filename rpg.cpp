@@ -23,7 +23,7 @@ protected:
    int strength; // How much damage we can inflict
    int hitpoints; // How much damage we can sustain
 
-   stringstream damageLog;
+   stringstream damageLog; //used to keep track of damage modifiers
 
 public:
    virtual string getSpecies() = 0; // Returns type of species
@@ -96,6 +96,7 @@ public:
       return attack1 + attack2;
    }
 };
+
 class CyberDemon: public Demon{
 public:
    CyberDemon(int startStrength, int startHitpoints):
@@ -109,6 +110,7 @@ public:
       return Demon::getDamage();
    }
 };
+
 class Elf: public Creature{
 public:
    Elf(int startStrength, int startHitpoints):
