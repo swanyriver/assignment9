@@ -23,6 +23,22 @@ string ArrayOutput(arrayType items[], int numElements);
 template <typename TestType>
 void TestSort(TestType items[], int numElements);
 
+class Creature{
+private:
+   string name;
+   int strength;
+
+public:
+   Creature(string theName, int theStrenght):
+      strength(theStrenght), name(theName){}
+
+   friend bool operator < (const Creature& left, const Creature& right);
+   friend ostream& operator << (ostream& out, const Creature& creature);
+
+};
+
+
+
 
 int main(){
 
@@ -33,12 +49,24 @@ int main(){
    float floats[NUM_ELEMENTS] = { 3.4, 55.44, 10, .6, -2, 6.6, 7.788, 43, 34};
    string strs[NUM_ELEMENTS] = { "hello", "goodbye", "a", "A", "Bat", "cat",
          "hat", "dog", "Brandon", "Swanson"};
+   Creature creats[NUM_ELEMENTS] = { Creature("Tobias",12),
+                                     Creature("Dave", 18),
+                                     Creature("Tim", 8),
+                                     Creature("Bob", 40),
+                                     Creature("Sue", 13),
+                                     Creature("Tian", 12),
+                                     Creature("Jimmy", 9),
+                                     Creature("Tom", 32),
+                                     Creature("Dan", 4),
+                                     Creature("Joe", 56),
+   };
 
 
    //displaying unsorted then sorted arrays
    TestSort(numbers,NUM_ELEMENTS);
    TestSort(floats,NUM_ELEMENTS);
    TestSort(strs,NUM_ELEMENTS);
+   TestSort(creats,NUM_ELEMENTS);
 
 
 }
@@ -75,6 +103,18 @@ void InsertElement ( TypeIns val , TypeIns sortArray[] ,
    sortArray[i] = val;
 }
 
+////////////////////////////////////////////////////////////////////
+/////////CREATURE OPERATORS/////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+bool operator < (const Creature& left, const Creature& right){
+   return (left.strength < right.strength);
+}
+
+ostream& operator << (ostream& out, const Creature& creature){
+   out << creature.name << " (str:" << creature.strength << ")";
+   return out;
+}
 
 ////////////////////////////////////////////////////////////////////
 //////////////TESTING OUTPUT///////////////////////////////////////
